@@ -2,8 +2,8 @@ package HRhibernateUtil;
 
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("Applicant")
