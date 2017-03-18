@@ -1,4 +1,4 @@
-package HRhibernateUtil;
+package spring.mvc.models;
 
 
 import java.io.Serializable;
@@ -23,7 +23,7 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false)
+    @Column(name = "person_id",nullable = false)
     private Integer ID;
 
     @Column(name = "firstName",nullable = false)
@@ -54,6 +54,14 @@ public class Person implements Serializable {
         this.email = email;
         this.phone = phone;
         this.mailingAddress = mailingAddress;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
 

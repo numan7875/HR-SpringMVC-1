@@ -11,10 +11,11 @@
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
-    <mapping class="HRhibernateUtil.Person"/>
-    <mapping class="HRhibernateUtil.Applicant"/>
-    <mapping class="HRhibernateUtil.HRManager"/>
-    <mapping class="HRhibernateUtil.HRPersonnal"/>
-    <mapping class="HRhibernateUtil.SME"/>
+    <mapping class="spring.mvc.models.Applicant"/>
+    <mapping class="spring.mvc.models.HRManager"/>
+    <mapping class="spring.mvc.models.HRPersonnal"/>
+    <mapping class="spring.mvc.models.Job"/>
+    <mapping class="spring.mvc.models.Person"/>
+    <mapping class="spring.mvc.models.SME"/>
   </session-factory>
 </hibernate-configuration>

@@ -8,7 +8,6 @@ package HRhibernateUtil;
 
 
 
-import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -38,15 +37,5 @@ public class HRhibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    public void create(Person person){
-        Session sessionOf = getSessionFactory().openSession();
-
-            sessionOf.beginTransaction();
-
-            sessionOf.save(person);
-
-            sessionOf.getTransaction().commit();
-
-            sessionOf.close();
-    }
+    
 }

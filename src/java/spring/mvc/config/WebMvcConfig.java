@@ -22,7 +22,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     // Static Resource Config 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/").setCachePeriod(31556926);
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/WEB-INF/resources/")
+                .setCachePeriod(31556926);
     }
  
      
@@ -32,6 +34,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/").setViewName("index");
+    registry.addViewController("/").setViewName("redirect");
   }
 }

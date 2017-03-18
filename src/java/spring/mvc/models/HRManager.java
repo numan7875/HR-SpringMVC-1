@@ -1,4 +1,4 @@
-package HRhibernateUtil;
+package spring.mvc.models;
 
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;

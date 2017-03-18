@@ -1,9 +1,12 @@
-package HRhibernateUtil;
+package spring.mvc.models;
 
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("Applicant")
@@ -20,7 +23,14 @@ public class Applicant extends Person {
     
     @Column(name = "coverLetter")
     private String coverLetter;
+    
+    @OneToMany(targetEntity = Job.class, mappedBy = "applicant", cascade = CascadeType.ALL)
+    private List<Job> jopApp;
 
+    public Applicant(){
+        super();
+    }
+    
     public Applicant(String srcOfInfo, String experience, String cvPath, String coverLetter, String firstName, String lastName, String email, String phone, String mailingAddress,String password) {
         super(firstName, lastName, email, phone, mailingAddress,password);
         this.srcOfInfo = srcOfInfo;
@@ -29,11 +39,14 @@ public class Applicant extends Person {
         this.coverLetter = coverLetter;
     }
 
-    public Applicant(String firstName, String lastName, String email, String phone, String mailingAddress,String password) {
-        super(firstName, lastName, email, phone, mailingAddress,password);
-    }
-
     
+    public List<Job> getJopApp() {
+        return jopApp;
+    }
+    
+    public void setJopApp(List<Job> jopApp) {
+        this.jopApp = jopApp;
+    }
     
     public String getSrcOfInfo() {
             return this.srcOfInfo;
@@ -72,4 +85,5 @@ public class Applicant extends Person {
             throw new UnsupportedOperationException();
     }
 
+   
 }

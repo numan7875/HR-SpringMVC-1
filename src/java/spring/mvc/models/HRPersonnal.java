@@ -1,14 +1,32 @@
-package HRhibernateUtil;
+package spring.mvc.models;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "HRPersonnal")
 public class HRPersonnal extends Person {
+    
+    @OneToMany(mappedBy = "hrPersonnal", cascade = CascadeType.ALL)
+    private List<Job> jobAd;
 
+    public HRPersonnal() {
+        super();
+    }
+    
     public HRPersonnal(String firstName, String lastName, String email, String phone, String mailingAddress,String password) {
         super(firstName, lastName, email, phone, mailingAddress,password);
+    }
+
+    public List<Job> getJobAd() {
+        return jobAd;
+    }
+
+    public void setJobAd(List<Job> jobAd) {
+        this.jobAd = jobAd;
     }
 
     public void advertiseJob() {

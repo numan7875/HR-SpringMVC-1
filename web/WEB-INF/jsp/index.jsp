@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,27 +127,17 @@
               </tr>
                 </thead>
             <tbody>
-                  <tr>
+                
+            <c:forEach var="jobIt" items="${jobs}">
+              <tr>
                 <th scope="row">1</th>
-                <td>Unity Game Development</td>
-                <td>1-2 years</td>
-                <td>We are looking for experienced and fresh game developers who have strong command over Unity3D, Android and iOS app development frameworks and tools.</td>
+                <td>${jobIt.jobTitle}</td>
+                <td>${jobIt.jobExperience}</td>
+                <td>${jobIt.jobDescription}</td>
                 <td><a href="#jobModal" class="btn btn-default" data-toggle="modal">Apply Now</a></td>
               </tr>
-                  <tr>
-                <th scope="row">2</th>
-                <td>Graphic Designer</td>
-                <td>At least one year</td>
-                <td>We are looking for experienced and fresh graphic designer who have strong command over photoshop ,illustrator and other tools.</td>
-                <td><a href="#jobModal" class="btn btn-default" data-toggle="modal">Apply Now</a></td>
-              </tr>
-                  <tr>
-                <th scope="row">3</th>
-                <td>Android Developer</td>
-                <td>zero or Two Years</td>
-                <td>We are looking for experienced and fresh game developers who have strong command over Unity3D, Android and iOS app development frameworks and tools.</td>
-                <td><a href="#jobModal" class="btn btn-default" data-toggle="modal">Apply Now</a></td>
-              </tr>
+              </c:forEach>
+              
                 </tbody>
           </table>
             </div>
@@ -339,83 +330,83 @@
       		</div>
         </div>
               <div class="modal-body">
-				<div class="container">
-					<div class="row">
-				  		<div class="col-lg-12 text-center">
-							<h2>Applying for: Unity Game Development</h2>
-							<hr class="star-primary">
-			  			</div>
-					</div>
-					<div class="row">
-				  		<div class="col-lg-8 col-lg-offset-2"> 
-							<form id="jobApply">
-					  			<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-									  <label>First Name</label>
-									  <input type="text" class="form-control" placeholder="First Name" id="firstname" required data-validation-required-message="Please enter your name.">
-									</div>
-				  				</div>
-				  				<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-									  <label>Last Name</label>
-									  <input type="text" class="form-control" placeholder="Last Name" id="lastname" required data-validation-required-message="Please enter your name.">
-									</div>
-				  				</div>
-					  			<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-									  <label>Email Address</label>
-									  <input type="email" class="form-control" placeholder="Email Address" id="jobEmail" required data-validation-required-message="Please enter your email address.">
-									</div>
-				  				</div>
-					  			<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										  <label>Phone Number</label>
-										  <input type="tel" class="form-control" placeholder="Phone Number" id="jobPhone" required data-validation-required-message="Please enter your phone number.">
-									</div>
-				  				</div>
-				  				<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										  <label>Job Info.</label>
-										  <input type="text" class="form-control" placeholder="How did you hear about this Job?" id="jobinfo">
-									</div>
-				  				</div>
-				  				<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										  <label>Address</label>
-										  <textarea rows="5" class="form-control" placeholder="Address" id="address" required data-validation-required-message="Please enter your phone number."></textarea>
-									</div>
-				  				</div>
-				  				<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										  <label>Work Experience</label>
-										  <input type="text" class="form-control" placeholder="Work Experience" id="workExperience" required data-validation-required-message="Please enter your exprience.">
-										  <p class="help-block text-danger"></p>
-									</div>
-				  				</div>
-					  			<div class="row control-group">
-									<div class="form-group col-xs-12 floating-label-form-group controls">
-										  <label>Cover Letter</label>
-										  <textarea rows="5" class="form-control" placeholder="Cover Letter" id="coverletter"></textarea>
-									</div>
-				  				</div>
-				  				<div class="row control-group">
-				  					<div class="form-group col-xs-12 floating-label-form-group controls">
-				  						<label>Attach Resume</label>
-				  						<input type="file" class="form-control" placeholder="Attach Resume"
-				  						id="resume">
-									</div>
-				  				</div>
-					  <br>
-				  		<div id="successJob"></div>
-					  		<div class="row">
-								<div class="form-group col-xs-12">
-						  			<button type="submit" class="btn btn-success btn-lg">Send</button>
-								</div>
-				  	  		</div>
-					</form>
-			  </div>
-				</div>
-		  </div>
+                            <div class="container">
+                                    <div class="row">
+                                            <div class="col-lg-12 text-center">
+                                                    <h2>Applying for: Unity Game Development</h2>
+                                                    <hr class="star-primary">
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-lg-8 col-lg-offset-2"> 
+                                            <form:form id="jobApply" action="jobApplication" method="post" commandName="jobApply">
+                                                <div class="row control-group">
+                                                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                      <label>First Name</label>
+                                                      <form:input path="firstName" class="form-control" data-validation-required-message="Please enter your name."></form:input>
+                                                    </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                          <label>Last Name</label>
+                                                          <form:input path="lastName" class="form-control"  data-validation-required-message="Please enter your name."/>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                          <label>Email Address</label>
+                                                          <form:input path="email" class="form-control"  data-validation-required-message="Please enter your email address."/>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                            <label>Phone Number</label>
+                                                            <form:input path="email" class="form-control" data-validation-required-message="Please enter your phone number."/>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                            <label>Job Info.</label>
+                                                            <form:input path="srcOfInfo" class="form-control"/>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                            <label>Address</label>
+                                                            <form:textarea path="mailingAddress" rows="5" class="form-control" data-validation-required-message="Please enter your phone number."></form:textarea>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                         <label>Work Experience</label>
+                                                        <form:input path="experience" class="form-control" data-validation-required-message="Please enter your exprience."/>
+                                                        <p class="help-block text-danger"></p>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                            <label>Cover Letter</label>
+                                                            <form:textarea path="coverLetter" class="form-control" id="coverletter"></form:textarea>
+                                                        </div>
+                                                </div>
+                                                <div class="row control-group">
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                                <label>Attach Resume</label>
+                                                                <input type="file" class="form-control" placeholder="Attach Resume"
+                                                                id="resume">
+                                                        </div>
+                                                </div>
+                          <br>
+                                <div id="successJob"></div>
+                                        <div class="row">
+                                                <div class="form-group col-xs-12">
+                                                        <button type="submit" class="btn btn-success btn-lg">Send</button>
+                                                </div>
+                                        </div>
+                                    </form:form>
+                      </div>
+                            </div>
+              </div>
         </div>
 	</div>
 </div>
