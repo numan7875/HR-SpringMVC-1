@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <div class="row">
 				<div class="col-lg-10 col-sm-10">
@@ -11,7 +12,7 @@
 				</div>
 			   <form class="form-horizontal" id="edit-profile">
 			   	 <div class="form-group">
-					<img src="../img/profile.png" class="img-responsive center-block" alt="Responsive image" width="70" height="70">
+                                     <img src="<c:url value="/resources/img/profile.png"></c:url>" class="img-responsive center-block" alt="Responsive image" width="70" height="70">
 					<div class="col-sm-4" hidden id="image">
 					  <input type="file" class="form-control" >
 					</div>

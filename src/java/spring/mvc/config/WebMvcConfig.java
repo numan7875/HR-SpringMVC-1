@@ -25,6 +25,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/WEB-INF/resources/")
                 .setCachePeriod(31556926);
+        registry.addResourceHandler("/jsp/**")
+                .addResourceLocations("/WEB-INF/jsp/")
+                .setCachePeriod(3155692);
     }
  
      

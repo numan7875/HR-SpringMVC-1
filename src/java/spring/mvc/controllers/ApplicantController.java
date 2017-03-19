@@ -32,4 +32,6 @@ public class ApplicantController {
         mv.addObject("jobs", list);
         return mv;
     }
+    
+
 }

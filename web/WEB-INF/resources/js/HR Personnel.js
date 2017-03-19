@@ -3,33 +3,43 @@
 
 $(document).ready(function(){
 	"use strict";
-	
-	$("div#page-wrapper > div.container-fluid").load("JobAdvertisement.html");
-	
-	
-	$( "#jobAdForm" ).submit(function( event ) {
-		$("#adSuccess").html("<div class='alert alert-success alert-dismissable'>");
-		$('#adSuccess > .alert-success').html("<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>").append(
-			"Successfully advertised!")
-		.append("</div>");
-		$('#jobAdForm').trigger("reset");
-		event.preventDefault();
-	});
+	ajaxCall("jobAdvertisement");
+
 	
 	$(".jobAd").click(function(){
-		$("div#page-wrapper > div.container-fluid").load("JobAdvertisement.html");
+            ajaxCall("jobAdvertisement");
 	});
 
 	$(".applicants").click(function(){
-		$("div#page-wrapper > div.container-fluid").load("JobApplicants.html");
+            ajaxCall("applicants");
 	});
 	$(".interview").click(function(){
-		$("div#page-wrapper > div.container-fluid").load("InterviewStatus.html");
+            ajaxCall("interviewStatus");
 	});
 	
 	$("#profile").click(function(){
-		$("div#page-wrapper > div.container-fluid").load("../LogIn-SignUp/EditProfile.html");
+            ajaxCall("profile");
 	});
 });
 
+function ajaxCall(action) {
 
+	$.ajax({
+		type : "GET",
+		contentType : "application/json",
+		url : action,
+		timeout : 100000,
+                cache: false,
+		success : function(retPage) {
+			console.log("SUCCESS: ", "");
+			$("div#page-wrapper > div.container-fluid").html(retPage);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+			display(e);
+		},
+		done : function(e) {
+			console.log("DONE");
+		}
+	});
+}

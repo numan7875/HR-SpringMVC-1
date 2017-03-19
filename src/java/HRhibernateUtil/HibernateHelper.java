@@ -43,7 +43,6 @@ public class HibernateHelper {
         sessionOf.close();
     }
      
-     
     public void create(Job job){
         Session sessionOf = getSessionFactory().openSession();
         sessionOf.beginTransaction();
@@ -59,8 +58,29 @@ public class HibernateHelper {
         sessionOf.beginTransaction();
         
         Query query = sessionOf.createQuery("from Job");
+        sessionOf.close();
         list = query.list();
         
         return list;
+    }
+    
+    public Person isExist(Person person){
+         
+        String quer = "from person AS P where P.EMAIL = "+person.getEmail() + " AND p.PASSWORD = " +person.getPassword();
+        
+        Session sessionOf = getSessionFactory().openSession();
+        sessionOf.beginTransaction();
+        Query query = sessionOf.createQuery(
+                "from Person as P where P.email = :email and P.password = :password")
+                .setParameter("email", person.getEmail())
+                .setParameter("password", person.getPassword());
+        
+        List<Person> list = query.list();
+        
+        sessionOf.close();
+        
+        if(list.size()>= 1)
+            return list.get(0);
+        return null;
     }
 }

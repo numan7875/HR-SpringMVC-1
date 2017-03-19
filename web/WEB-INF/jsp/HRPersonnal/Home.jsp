@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,10 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RealGame - HR Personnal</title>
     <!-- Bootstrap -->
-	<link href="../css/bootstrap.css" rel="stylesheet">
-	<link href="../css/sb-admin.css" rel="stylesheet">
-	<link href="../css/Customize Modal.css" rel="stylesheet">
-	<link href="../fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<c:url value="/resources/css/bootstrap.css"></c:url>" rel="stylesheet">
+	<link href="<c:url value="/resources/css/sb-admin.css"></c:url>" rel="stylesheet">
+	<link href="<c:url value="/resources/css/Customize Modal.css"></c:url>" rel="stylesheet">
+	<link href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css"></c:url>" rel="stylesheet" type="text/css">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="../img/numan.png" height="50" width="50" class="img-responsive" alt="Responsive image"></a>
+                <a class="navbar-brand" href="home"><img src="<c:url value="/resources/img/numan.png"></c:url>" height="50" width="50" class="img-responsive" alt="Responsive image"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -41,7 +42,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="../LogIn-SignUp/Login.html"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="logOut"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -107,7 +108,7 @@
                <input type="text" class="form-control" id="coverLetter" disabled placeholder="Some Lorem ipsum things like that.">
             </div>
             <div class="form-group">
-				<a href="#" id="cvLink"><b>Applicant' CV</b></a>
+		<a href="#" id="cvLink"><b>Applicant' CV</b></a>
             </div>
              
               <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-send"></span> Send to SME</button>
@@ -125,13 +126,13 @@
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	
-	<script src="../js/jquery-3.1.1.js"></script>
-	<script src="../js/jquery-1.11.3.min.js"></script>
-	<script src="../js/HR Personnel.js"></script>
+        <script src="<c:url value="/resources/js/jquery-3.1.1.js"></c:url>"></script>
+	<script src="<c:url value="/resources/js/jquery-1.11.3.min.js"></c:url>"></script>
+	<script src="<c:url value="/resources/js/HR Personnel.js"></c:url>"></script>
 	
 
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
-	<script src="../js/bootstrap.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.js"></c:url>"></script>
 	
   </body>
 </html>

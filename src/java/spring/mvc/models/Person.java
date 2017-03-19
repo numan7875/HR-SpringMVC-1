@@ -1,6 +1,7 @@
 package spring.mvc.models;
 
 
+import HRhibernateUtil.HibernateHelper;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "PERSON")
@@ -43,6 +45,11 @@ public class Person implements Serializable {
 
     @Column(name = "mailingAddress",nullable = false)
     private String mailingAddress;
+    
+    @Transient
+    public String getDecriminatorValue() {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
+    }
 
     public Person() {
         super();
@@ -56,7 +63,7 @@ public class Person implements Serializable {
         this.mailingAddress = mailingAddress;
         this.password = password;
     }
-
+    
     public String getPassword() {
         return password;
     }
@@ -136,5 +143,11 @@ public class Person implements Serializable {
     public void setMailingAddress(String mailingAddress) {
             // TODO - implement Person.setMailingAddress
             this.mailingAddress = mailingAddress;
+    }
+    
+    public  Person checkSignin(){
+        HibernateHelper obj = HibernateHelper.getInstance();
+        Person person = obj.isExist(this);
+        return person;
     }
 }

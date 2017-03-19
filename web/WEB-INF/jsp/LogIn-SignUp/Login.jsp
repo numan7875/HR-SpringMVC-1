@@ -1,5 +1,4 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,13 +21,21 @@
   <body>
   <div class="jumbotron" style="height: 100vh;">
    <div class="container" style="align-content: center">
-   <form:form class="form-signin" action="loginHR" method="post" commandName="loginPerson">
-           <h2 class="form-signin-heading"><img src="<c:url value="/resources/img/numan.png"></c:url>" class="img-responsive" alt="Responsive image"></h2>
+       <form class="form-signin" action="loginHR" method="post">
+        <h2 class="form-signin-heading"><img src="<c:url value="/resources/img/numan.png"></c:url>" class="img-responsive" alt="Responsive image"></h2>
         <br>
         <label for="inputEmail" class="sr-only">Email address</label>
-           <form:input path="person.email"  class="form-control input-lg" placeholder="Email address"/>
+        <input type="email" name = "email" id="inputEmail" class="form-control input-lg" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <form:password path="person.password"  class="form-control" placeholder="Password"/>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        
+       <c:if test="${not empty message}">
+        <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            ${message}
+        </div>
+       </c:if>
+        
         <!--<div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -38,13 +45,14 @@
         <!--<button class="btn btn-default input-lg" type="submit">Create ID</button>-->
         <br><br>	
         <div>Forgot <a id="forgotPass" href="#myModal" data-toggle="modal">Password?</a></div>
-      </form:form>
+      </form>
    </div>
   </div>
   
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
+    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
@@ -52,7 +60,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Retrieve Password </h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form id="passSend" role="form">
+            <form id="passSend" role="form" name="">
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Email Address</label>
               <input type="email" class="form-control" id="psw" placeholder="Enter Email Address" required>
@@ -67,6 +75,7 @@
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
         </div>
       </div>
+      
     </div>
   </div> 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
@@ -74,6 +83,6 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed --> 
         <script src="<c:url value="/resources/js/bootstrap.js"></c:url>"></script>
 	<!-- For Forgot Password -->
-        <script src="<c:url value="/resources/js/ForgotPassword.js"></c:url>">	</script>
+        <script src="<c:url value="resources/js/ForgotPassword.js"></c:url>"></script>
   </body>
 </html>

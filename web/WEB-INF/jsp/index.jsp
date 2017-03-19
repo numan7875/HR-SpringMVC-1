@@ -339,54 +339,54 @@
                                     </div>
                                     <div class="row">
                                             <div class="col-lg-8 col-lg-offset-2"> 
-                                            <form:form id="jobApply" action="jobApplication" method="post" commandName="jobApply">
+                                            <form id="jobApply">
                                                 <div class="row control-group">
-                                                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                      <label>First Name</label>
-                                                      <form:input path="firstName" class="form-control" data-validation-required-message="Please enter your name."></form:input>
-                                                    </div>
+                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                          <label>First Name</label>
+                                                          <input type="text" class="form-control" placeholder="First Name" id="firstname" required data-validation-required-message="Please enter your name.">
+                                                        </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
                                                           <label>Last Name</label>
-                                                          <form:input path="lastName" class="form-control"  data-validation-required-message="Please enter your name."/>
+                                                          <input type="text" class="form-control" placeholder="Last Name" id="lastname" required data-validation-required-message="Please enter your name.">
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
                                                           <label>Email Address</label>
-                                                          <form:input path="email" class="form-control"  data-validation-required-message="Please enter your email address."/>
+                                                          <input type="email" class="form-control" placeholder="Email Address" id="jobEmail" required data-validation-required-message="Please enter your email address.">
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                            <label>Phone Number</label>
-                                                            <form:input path="email" class="form-control" data-validation-required-message="Please enter your phone number."/>
+                                                                  <label>Phone Number</label>
+                                                                  <input type="tel" class="form-control" placeholder="Phone Number" id="jobPhone" required data-validation-required-message="Please enter your phone number.">
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                            <label>Job Info.</label>
-                                                            <form:input path="srcOfInfo" class="form-control"/>
+                                                                  <label>Job Info.</label>
+                                                                  <input type="text" class="form-control" placeholder="How did you hear about this Job?" id="jobinfo">
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                            <label>Address</label>
-                                                            <form:textarea path="mailingAddress" rows="5" class="form-control" data-validation-required-message="Please enter your phone number."></form:textarea>
+                                                                  <label>Address</label>
+                                                                  <textarea rows="5" class="form-control" placeholder="Address" id="address" required data-validation-required-message="Please enter your phone number."></textarea>
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                         <label>Work Experience</label>
-                                                        <form:input path="experience" class="form-control" data-validation-required-message="Please enter your exprience."/>
-                                                        <p class="help-block text-danger"></p>
+                                                                  <label>Work Experience</label>
+                                                                  <input type="text" class="form-control" placeholder="Work Experience" id="workExperience" required data-validation-required-message="Please enter your exprience.">
+                                                                  <p class="help-block text-danger"></p>
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
                                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                            <label>Cover Letter</label>
-                                                            <form:textarea path="coverLetter" class="form-control" id="coverletter"></form:textarea>
+                                                                  <label>Cover Letter</label>
+                                                                  <textarea rows="5" class="form-control" placeholder="Cover Letter" id="coverletter"></textarea>
                                                         </div>
                                                 </div>
                                                 <div class="row control-group">
@@ -396,14 +396,14 @@
                                                                 id="resume">
                                                         </div>
                                                 </div>
-                          <br>
-                                <div id="successJob"></div>
+					  <br>
+                                        <div id="successJob"></div>
                                         <div class="row">
                                                 <div class="form-group col-xs-12">
                                                         <button type="submit" class="btn btn-success btn-lg">Send</button>
                                                 </div>
                                         </div>
-                                    </form:form>
+					</form>
                       </div>
                             </div>
               </div>

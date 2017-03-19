@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
+
 import spring.mvc.models.Person;
 
 /**
@@ -29,14 +30,18 @@ public class LoginController {
         return "LogIn-SignUp/Login";
     }
     @RequestMapping(value = "/loginHR",method = RequestMethod.POST)
-    public String PostLogin(@ModelAttribute Person person){
+    public ModelAndView loginToHR(@ModelAttribute("Person") Person person){
+        ModelAndView model = new ModelAndView();
+        person = person.checkSignin();
         
-        return "index";
-    }
-    @RequestMapping(value = "/loginHR",method = RequestMethod.GET)
-    public String getLogin(Model model){
-        Person person = new Person();
-        model.addAttribute("loginPerson", person);
-        return "LogIn-SignUp/Login";
+        if(person != null && !person.getDecriminatorValue().equals("Applicant")){
+            String type = person.getDecriminatorValue();
+            model.setViewName(type + "/Home");
+        }else{
+            model.setViewName("LogIn-SignUp/Login");
+            model.addObject("message", "Email/Password is incorrect!");
+        }
+        
+        return model;
     }
 }
