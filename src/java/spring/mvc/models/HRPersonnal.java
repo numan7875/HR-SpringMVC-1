@@ -1,20 +1,25 @@
 package spring.mvc.models;
 
+import HRhibernateUtil.HibernateHelper;
 import java.util.List;
+import java.util.ArrayList;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "HRPersonnal")
 public class HRPersonnal extends Person {
     
-    @OneToMany(mappedBy = "hrPersonnal", cascade = CascadeType.ALL)
+    
+    @OneToMany(mappedBy = "hrPersonnal",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Job> jobAd;
 
     public HRPersonnal() {
         super();
+        jobAd = new ArrayList<>();
     }
     
     public HRPersonnal(String firstName, String lastName, String email, String phone, String mailingAddress,String password) {
@@ -34,6 +39,12 @@ public class HRPersonnal extends Person {
             throw new UnsupportedOperationException();
     }
 
+    public List<Applicant> getApplicant(){
+        HibernateHelper h = HibernateHelper.getInstance();
+        List<Applicant> list = h.getAll();
+        return list;
+    }
+    
     public void reviewApplication() {
             // TODO - implement HRPersonnal.reviewApplication
             throw new UnsupportedOperationException();

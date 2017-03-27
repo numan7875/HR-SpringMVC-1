@@ -35,7 +35,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Numan Maraaj <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${sessionPerson.getName()}  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#" id="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -64,6 +64,13 @@
             <!-- /.navbar-collapse -->
         </nav>
         
+        <c:if test="${not empty create}">
+        <div class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            ${create}
+        </div>
+        </c:if>
+                    
         <div id="page-wrapper">
         	<div class="container-fluid">
         	

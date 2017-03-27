@@ -7,15 +7,17 @@ package spring.mvc.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Scope;
+import spring.mvc.models.Job;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
+import spring.mvc.models.HRPersonnal;
 import spring.mvc.models.Person;
 
 /**
@@ -25,31 +27,17 @@ import spring.mvc.models.Person;
 
 @Controller
 @SessionAttributes("sessionPerson")
-public class LoginController {
+public class HRPersonnalController {
     
-    @RequestMapping("/login")
-    public String showLogin(){
-        return "LogIn-SignUp/Login";
-    }
-    
-    @RequestMapping(value = "/loginHR",method = RequestMethod.POST)
-    public ModelAndView loginToHR(@ModelAttribute Person person){
+    @RequestMapping(value = "/jobAd",method = RequestMethod.POST)
+    public ModelAndView advertiseJob(@ModelAttribute Job job,@ModelAttribute("sessionPerson") Person person){
+       
+        job.setHrPersonnal((HRPersonnal)person);
         
-        ModelAndView model = new ModelAndView();
-        person = person.checkSignin();
+        job.createJob();
         
-        if(person != null && !person.getDecriminatorValue().equals("Applicant")){
-            String type = person.getDecriminatorValue();
-            model.addObject("sessionPerson",person);
-            
-            model.setViewName(type + "/Home");
-        }else{
-            model.setViewName("LogIn-SignUp/Login");
-            model.addObject("message", "Email/Password is incorrect!");
-        }
-        
+        ModelAndView model = new ModelAndView("HRPersonnal/Home");
+        model.addObject("create","Job Posted");
         return model;
     }
-    
-    
 }

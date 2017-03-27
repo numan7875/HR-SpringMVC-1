@@ -1,4 +1,3 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,7 +115,7 @@
     <div class="row">
           <div class="col-lg-12 col-sm-12">
         <div class="table-responsive">
-              <table class="table table-hover table-responsive table-condensed">
+            <table class="table table-hover table-responsive table-condensed">
             <thead>
                   <tr class="active">
                 <th>#</th>
@@ -124,22 +123,25 @@
                 <th>Work Experience</th>
                 <th>Job Description</th>
                 <th>&nbsp</th>
+                <th>&nbsp</th>
               </tr>
                 </thead>
             <tbody>
                 
+            <% int i = 1; %>
             <c:forEach var="jobIt" items="${jobs}">
               <tr>
-                <th scope="row">1</th>
+                <th scope="row"> <%= i++ %></th>
                 <td>${jobIt.jobTitle}</td>
                 <td>${jobIt.jobExperience}</td>
                 <td>${jobIt.jobDescription}</td>
-                <td><a href="#jobModal" class="btn btn-default" data-toggle="modal">Apply Now</a></td>
+                <td hidden="true" class="idOf">${jobIt.id}</td>
+                <td><a href="#jobModal" class="btn btn-default applyButton" data-toggle="modal">Apply Now</a></td>
               </tr>
               </c:forEach>
               
                 </tbody>
-          </table>
+            </table>
             </div>
       </div>
         </div>
@@ -148,21 +150,21 @@
 <!-- About Section -->
 <section class="success" id="about">
       	<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-				<h2>About Us!</h2>
-				<hr class="star-light">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-6 col-lg-offset-2">
-					<p>RealGame Lab being one of the market leaders in game and android development, is focusing on creating business value and promotion for clients internationally and locally. For us, fulfilling customer needs, our commitment and providing best solutions to their problems are our fore most priorities.</p>
-				</div>
-				<div class="col-lg-4">
-					<p>We strive for continuous quality improvement in everything that we do, so we will rank among the world's premier firms in customer and employee satisfaction.</p>
-				</div>
-			</div>
-  		</div>
+            <div class="row">
+                    <div class="col-lg-12 text-center">
+                    <h2>About Us!</h2>
+                    <hr class="star-light">
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="col-lg-6 col-lg-offset-2">
+                            <p>RealGame Lab being one of the market leaders in game and android development, is focusing on creating business value and promotion for clients internationally and locally. For us, fulfilling customer needs, our commitment and providing best solutions to their problems are our fore most priorities.</p>
+                    </div>
+                    <div class="col-lg-4">
+                            <p>We strive for continuous quality improvement in everything that we do, so we will rank among the world's premier firms in customer and employee satisfaction.</p>
+                    </div>
+            </div>
+        </div>
 </section>
 
 <!-- Contact Section -->
@@ -224,27 +226,27 @@
 <!-- Footer -->
 <footer class="text-center">
       <div class="footer-above">
-    		<div class="container">
-          		<div class="row">
-        			<div class="footer-col col-md-6">
-					  <h3>Location</h3>
-					  <p>Office xyz<br>
-					   Siddiq Trade Centre, <br>
-					   Main Blvd Gulberg, CA 90210</p>
-            		</div>
-					<div class="footer-col col-md-6">
-					  <h3>Around the Web</h3>
-					  <ul class="list-inline">
-						<li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a> </li>
-						<li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a> </li>
-						<li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a> </li>
-						<li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a> </li>
-						<li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a> </li>
-					  </ul>
-					</div>
-     	 		</div>
-        	</div>
-  		</div>
+        <div class="container">
+            <div class="row">
+                    <div class="footer-col col-md-6">
+                              <h3>Location</h3>
+                              <p>Office xyz<br>
+                               Siddique Trade Centre, <br>
+                               Main Blvd Gulberg, CA 90210</p>
+            </div>
+            <div class="footer-col col-md-6">
+              <h3>Around the Web</h3>
+              <ul class="list-inline">
+                    <li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a> </li>
+                    <li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a> </li>
+                    <li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a> </li>
+                    <li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a> </li>
+                    <li> <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a> </li>
+              </ul>
+            </div>
+                </div>
+        </div>
+      </div>
       	<div class="footer-below">
     		<div class="container">
           		<div class="row">
@@ -329,88 +331,90 @@
         		<div class="rl"> </div>
       		</div>
         </div>
-              <div class="modal-body">
-                            <div class="container">
-                                    <div class="row">
-                                            <div class="col-lg-12 text-center">
-                                                    <h2>Applying for: Unity Game Development</h2>
-                                                    <hr class="star-primary">
-                                            </div>
-                                    </div>
-                                    <div class="row">
-                                            <div class="col-lg-8 col-lg-offset-2"> 
-                                            <form id="jobApply">
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                          <label>First Name</label>
-                                                          <input type="text" class="form-control" placeholder="First Name" id="firstname" required data-validation-required-message="Please enter your name.">
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                          <label>Last Name</label>
-                                                          <input type="text" class="form-control" placeholder="Last Name" id="lastname" required data-validation-required-message="Please enter your name.">
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                          <label>Email Address</label>
-                                                          <input type="email" class="form-control" placeholder="Email Address" id="jobEmail" required data-validation-required-message="Please enter your email address.">
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                  <label>Phone Number</label>
-                                                                  <input type="tel" class="form-control" placeholder="Phone Number" id="jobPhone" required data-validation-required-message="Please enter your phone number.">
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                  <label>Job Info.</label>
-                                                                  <input type="text" class="form-control" placeholder="How did you hear about this Job?" id="jobinfo">
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                  <label>Address</label>
-                                                                  <textarea rows="5" class="form-control" placeholder="Address" id="address" required data-validation-required-message="Please enter your phone number."></textarea>
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                  <label>Work Experience</label>
-                                                                  <input type="text" class="form-control" placeholder="Work Experience" id="workExperience" required data-validation-required-message="Please enter your exprience.">
-                                                                  <p class="help-block text-danger"></p>
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                  <label>Cover Letter</label>
-                                                                  <textarea rows="5" class="form-control" placeholder="Cover Letter" id="coverletter"></textarea>
-                                                        </div>
-                                                </div>
-                                                <div class="row control-group">
-                                                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                                                                <label>Attach Resume</label>
-                                                                <input type="file" class="form-control" placeholder="Attach Resume"
-                                                                id="resume">
-                                                        </div>
-                                                </div>
-					  <br>
-                                        <div id="successJob"></div>
-                                        <div class="row">
-                                                <div class="form-group col-xs-12">
-                                                        <button type="submit" class="btn btn-success btn-lg">Send</button>
-                                                </div>
-                                        </div>
-					</form>
-                      </div>
-                            </div>
-              </div>
+         <form id="jobApply" action="jobApplication" method="POST">
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center ">
+                        <h2> 
+                            <input name="indexOf" class="targetText">
+                            <input type="text" name="jobID" class="nextTarget" >
+                        </h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+            <div class="row">
+            <div class="col-lg-8 col-lg-offset-2"> 
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>First Name</label>
+                      <input type="text" maxlength="20" name="firstName" class="form-control" placeholder="First Name" id="firstname" required data-validation-required-message="Please enter your name.">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Last Name</label>
+                      <input type="text" maxlength="20" name="lastName" class="form-control" placeholder="Last Name" id="lastname" required data-validation-required-message="Please enter your name.">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Email Address</label>
+                      <input type="email"  maxlength="50" name="email" class="form-control" placeholder="Email Address" id="jobEmail" required data-validation-required-message="Please enter your email address.">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Phone Number</label>
+                        <input type="tel"  maxlength="15" name="phone" class="form-control" placeholder="Phone Number" id="jobPhone" required data-validation-required-message="Please enter your phone number.">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Job Info.</label>
+                        <input type="text"  maxlength="50" name="srcOfInfo" class="form-control" placeholder="How did you hear about this Job?" id="jobinfo">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Address</label>
+                        <textarea rows="5" maxlength="70"  name="mailingAddress" class="form-control" placeholder="Address" id="address" required data-validation-required-message="Please enter your phone number."></textarea>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Work Experience</label>
+                        <input type="text"   maxlength="15" name="experience" class="form-control" placeholder="Work Experience" id="workExperience" required data-validation-required-message="Please enter your exprience.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Cover Letter</label>
+                        <textarea rows="5"  maxlength="150" name="coverLetter" class="form-control" placeholder="Cover Letter" id="coverletter"></textarea>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Attach Resume</label>
+                        <input type="file" class="form-control" placeholder="Attach Resume"
+                        id="resume">
+                    </div>
+                </div>
+                <br>
+                <div id="successJob"></div>
+                <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-success btn-lg">Send</button>
+                        </div>
+                </div>
         </div>
+            </div>
+             </div>
+        </div>
+        </form>
 	</div>
-</div>
-
+        </div>
 <!-- jQuery -->
 <script src="<c:url value="/resources/vendor/jquery/jquery.min.js"></c:url>" ></script> 
 
@@ -424,7 +428,7 @@
 <script src="<c:url value="/resources/js/jqBootstrapValidation.js"></c:url>"></script> 
 
 <!-- Apply Job Form JavaScript -->
-<!--<script src="js/Apply_Job.js"></script>-->
+<script src="<c:url value="/resources/js/Apply_Job.js"></c:url>"></script>
 <!-- Theme JavaScript --> 
 <script src=" <c:url value="/resources/js/freelancer.min.js"></c:url>"></script>
 </body>

@@ -15,6 +15,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.springframework.context.annotation.Scope;
 
 @Entity
 @Table(name = "PERSON")
@@ -28,22 +29,22 @@ public class Person implements Serializable {
     @Column(name = "person_id",nullable = false)
     private Integer ID;
 
-    @Column(name = "firstName",nullable = false)
+    @Column(name = "firstName",nullable = false,length = 20)
     private String firstName;
 
-    @Column(name = "lastName",nullable = false)
+    @Column(name = "lastName",nullable = false,length = 20)
     private String lastName;
 
-    @Column(name = "EMAIL",nullable = false)
+    @Column(name = "EMAIL",nullable = false,length = 50)
     private String email;
     
-    @Column(name = "password")
+    @Column(name = "password",length = 100)
     private String password;
 
-    @Column(name = "PHONE",nullable = false)
+    @Column(name = "PHONE",nullable = false,length = 15)
     private String phone;
 
-    @Column(name = "mailingAddress",nullable = false)
+    @Column(name = "mailingAddress",nullable = false,length = 70)
     private String mailingAddress;
     
     @Transient
@@ -106,6 +107,10 @@ public class Person implements Serializable {
             this.lastName = lastName;
     }
 
+    public String getName(){
+        return firstName + " " + lastName;
+    }
+    
     public String getEmail() {
             return this.email;
     }

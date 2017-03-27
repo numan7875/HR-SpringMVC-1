@@ -9,6 +9,7 @@ import static HRhibernateUtil.HRhibernateUtil.getSessionFactory;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import spring.mvc.models.Applicant;
 import spring.mvc.models.Job;
 import spring.mvc.models.Person;
 
@@ -53,20 +54,17 @@ public class HibernateHelper {
     
     public List<Job> getAllJobs(){
         List<Job> list;
-        
         Session sessionOf = getSessionFactory().openSession();
         sessionOf.beginTransaction();
         
         Query query = sessionOf.createQuery("from Job");
-        sessionOf.close();
         list = query.list();
+        sessionOf.close();
         
         return list;
     }
     
     public Person isExist(Person person){
-         
-        String quer = "from person AS P where P.EMAIL = "+person.getEmail() + " AND p.PASSWORD = " +person.getPassword();
         
         Session sessionOf = getSessionFactory().openSession();
         sessionOf.beginTransaction();
@@ -82,5 +80,36 @@ public class HibernateHelper {
         if(list.size()>= 1)
             return list.get(0);
         return null;
+    }
+    
+    public Job retrieveJob(Integer jobID){
+        
+        Session sessionOf = getSessionFactory().openSession();
+        sessionOf.beginTransaction();
+        
+        Query query = sessionOf.createQuery(
+                "from Job as j where j.id = :id")
+                .setParameter("id", jobID);
+        
+        List<Job> list = query.list();
+        sessionOf.close();
+        
+        if(list.size() >= 1){
+            return list.get(0);
+        }
+        return null;
+    }
+    
+    public List<Applicant> getAll(){
+        Session sessionOf = getSessionFactory().openSession();
+        sessionOf.beginTransaction();
+        Person person = new Person("sdf", "sfds", "numan@gmail.com", "dfsf", "sfsd", "123456");
+       Query query = sessionOf.createQuery(
+                "from Person as P where P.experience is not null");
+       
+        List<Person> list1 = query.list();
+        List<Applicant> list = query.list();
+        sessionOf.close();
+        return list;
     }
 }

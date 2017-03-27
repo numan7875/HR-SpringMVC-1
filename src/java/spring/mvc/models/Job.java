@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  *
@@ -31,21 +30,20 @@ public class Job implements Serializable {
     @Column(name = "ID")
     private Integer id;
     
-    @Column(name = "jobTitle",nullable = false,length = 30,unique = true)
+    @Column(name = "jobTitle",nullable = false,length = 30)
     private String jobTitle;
     
     @Column(name = "jobExperience",nullable = false,length = 15)
     private String jobExperience;
    
-    @Column(name = "jobDescription",nullable = false,length = 100)
+    @Column(name = "jobDescription",nullable = false,length = 500)
     private String jobDescription;
     
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Applicant applicant;
+    @Column(name = "status",nullable = false,columnDefinition = "varchar(15) default 'notreviewed'")
+    private String status = "notreviewed";
     
     @ManyToOne
-    @JoinColumn(name = "hrperson_id")
+    @JoinColumn(name = "HRPERSON_ID")
     private HRPersonnal hrPersonnal;
 
     public Job() {
@@ -58,21 +56,20 @@ public class Job implements Serializable {
         this.jobDescription = jobDescription;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public HRPersonnal getHrPersonnal() {
         return hrPersonnal;
     }
 
     public void setHrPersonnal(HRPersonnal hrPersonnal) {
         this.hrPersonnal = hrPersonnal;
-    }
-    
-   
-    public Applicant getApplicant() {
-        return applicant;
-    }
-
-    public void setApplicant(Applicant applicant) {
-        this.applicant = applicant;
     }
     
     public Integer getId() {
@@ -112,4 +109,8 @@ public class Job implements Serializable {
         List<Job> list = obj.getAllJobs();
         return list;
     }
+     public void createJob(){
+         HibernateHelper obj = HibernateHelper.getInstance();
+         obj.create(this);
+     }
 }
