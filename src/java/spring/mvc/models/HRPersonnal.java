@@ -42,6 +42,8 @@ public class HRPersonnal extends Person {
     public List<Applicant> getApplicant(){
         HibernateHelper h = HibernateHelper.getInstance();
         List<Applicant> list = h.getAll();
+        int i= 0;
+        i = 0;
         return list;
     }
     

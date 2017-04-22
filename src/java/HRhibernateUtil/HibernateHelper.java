@@ -108,6 +108,7 @@ public class HibernateHelper {
                 "from Person as P where P.experience is not null");
        
         List<Person> list1 = query.list();
+		
         List<Applicant> list = query.list();
         sessionOf.close();
         return list;
