@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,7 +36,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${sessionPerson.getName()}  <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${fn:escapeXml(sessionPerson.getName())}  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#" id="profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -67,7 +68,7 @@
         <c:if test="${not empty create}">
         <div class="alert alert-success alert-dismissable">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            ${create}
+            ${fn:escapeXml(create)}
         </div>
         </c:if>
                     
