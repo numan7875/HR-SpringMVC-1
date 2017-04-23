@@ -26,7 +26,9 @@ public class AjaxController {
     @RequestMapping(value = "/jobAdvertisement",method = RequestMethod.GET)
     public ModelAndView ajaxPage(){
         ModelAndView model = new ModelAndView();
+        
         model.setViewName("HRPersonnal/JobAdvertisement");
+        
         return model;
     }
     @RequestMapping(value = "/applicants",method = RequestMethod.GET)

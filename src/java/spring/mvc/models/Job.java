@@ -8,6 +8,8 @@ package spring.mvc.models;
 import HRhibernateUtil.HibernateHelper;
 import java.io.Serializable;
 import java.util.List;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -23,6 +29,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "JOB")
+@WebService(serviceName = "JobService")
 public class Job implements Serializable {
 
     @Id
@@ -44,7 +51,7 @@ public class Job implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "HRPERSON_ID")
-    private HRPersonnal hrPersonnal;
+    private transient HRPersonnal hrPersonnal;
 
     public Job() {
         super();
@@ -103,11 +110,39 @@ public class Job implements Serializable {
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
     }
-    
-     public List<Job> getAll(){
-        HibernateHelper obj = HibernateHelper.getInstance();
-        List<Job> list = obj.getAllJobs();
+    @WebMethod(operationName = "GetAllJobs")
+    public  List<Job> getAll(){
+        try{
+        List<Job> list ;
+        //HibernateHelper obj = HibernateHelper.getInstance();
+        SessionFactory sessionFactory = HRhibernateUtil.HRhibernateUtil.getSessionFactory();
+        if(!sessionFactory.getCurrentSession().getTransaction().isActive())
+            sessionFactory.getCurrentSession().getTransaction().begin();
+        
+        list =  sessionFactory.getCurrentSession()
+                .createCriteria(Job.class)
+                .list();
+        
+        sessionFactory.getCurrentSession().close();
+        //list = obj.getAllJobs();
         return list;
+        }catch(RuntimeException re){
+            return null;
+        }
+    }
+    @WebMethod(operationName = "SearchByID")
+    public  String searchByID(int id){
+         SessionFactory sessionFactory = HRhibernateUtil.HRhibernateUtil.getSessionFactory();
+        if(!sessionFactory.getCurrentSession().getTransaction().isActive())
+            sessionFactory.getCurrentSession().getTransaction().begin();
+        List<Job> list = sessionFactory.getCurrentSession()
+                .createCriteria(Job.class)
+                .add(Restrictions.eq("id", new Integer(id)))
+                .list();
+        if(!list.isEmpty()){
+            return list.get(0).getStatus();
+        }
+        return "";
     }
      public void createJob(){
          HibernateHelper obj = HibernateHelper.getInstance();

@@ -1,11 +1,12 @@
 package spring.mvc.models;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
 
 @Entity
 @DiscriminatorValue(value = "HRManager")
-public class HRManager extends Person {
+public class HRManager extends Person implements Serializable {
    
     public HRManager(){
         super();

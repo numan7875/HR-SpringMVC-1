@@ -1,8 +1,10 @@
 package spring.mvc.models;
 
 import HRhibernateUtil.HibernateHelper;
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import javax.jws.WebService;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
@@ -11,11 +13,11 @@ import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value = "HRPersonnal")
-public class HRPersonnal extends Person {
+public class HRPersonnal extends Person implements Serializable{
     
     
     @OneToMany(mappedBy = "hrPersonnal",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Job> jobAd;
+    private transient List<Job> jobAd;
 
     public HRPersonnal() {
         super();

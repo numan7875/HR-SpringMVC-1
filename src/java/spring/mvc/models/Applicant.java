@@ -1,9 +1,13 @@
 package spring.mvc.models;
 
 
+import HRhibernateUtil.HRhibernateUtil;
 import HRhibernateUtil.HibernateHelper;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -11,10 +15,17 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Restrictions;
 
 @Entity
 @DiscriminatorValue("Applicant")
-public class Applicant extends Person {
+@WebService(serviceName = "ApplicantService")
+public class Applicant extends Person implements Serializable{
     
     @Column(name = "srcOfInfo",length = 50)
     private String srcOfInfo;
@@ -33,7 +44,7 @@ public class Applicant extends Person {
     @JoinTable(name = "APPLICANT_JOB"
             ,joinColumns = {@JoinColumn(name = "person_id")}
             ,inverseJoinColumns = {@JoinColumn(name = "ID")})
-    private List<Job> jopApp;
+    private transient List<Job> jopApp;
 
     public Applicant(){
         super();
@@ -109,6 +120,28 @@ public class Applicant extends Person {
             h.create(this);
             
             return false;
+    }
+    @WebMethod(operationName = "SearchByName")
+    public  List<Applicant> searchByName( String name){
+       try{
+            List<Applicant> list = null;
+            //HibernateHelper obj = HibernateHelper.getInstance();
+            SessionFactory sessionFactory = HRhibernateUtil.getSessionFactory();
+            if(!sessionFactory.getCurrentSession().getTransaction().isActive())
+                sessionFactory.getCurrentSession().getTransaction().begin();
+         
+            Criterion crtrn = Restrictions.like("firstName","%" + name + "%");
+            Criterion crtrn1 = Restrictions.like("lastName","%" + name + "%");
+            list =  sessionFactory.getCurrentSession()
+                    .createCriteria(Applicant.class)
+                    .add(Restrictions.or(crtrn,crtrn1))
+                    .list();
+
+            sessionFactory.getCurrentSession().close();
+            return list;
+        }catch(RuntimeException re){
+            return null;
+        }
     }
    
 }

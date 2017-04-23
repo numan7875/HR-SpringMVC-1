@@ -1,11 +1,12 @@
 package spring.mvc.models;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.DiscriminatorValue;
 
 @Entity
 @DiscriminatorValue("SME")
-public class SME extends Person {
+public class SME extends Person implements Serializable{
 
     public SME(String firstName, String lastName, String email, String phone, String mailingAddress,String password) {
         super(firstName, lastName, email, phone, mailingAddress,password);

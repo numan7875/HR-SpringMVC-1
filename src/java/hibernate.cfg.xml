@@ -7,10 +7,12 @@
     <property name="hibernate.connection.url">jdbc:derby://localhost:1527/HR-SpringMVC-1</property>
     <property name="hibernate.connection.username">hopefulmango</property>
     <property name="hibernate.connection.password">Kalnclaire</property>
+    <property name="hibernate.connection.pool_size">10</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.connection.isolation">2</property>
     <mapping class="spring.mvc.models.Applicant"/>
     <mapping class="spring.mvc.models.HRManager"/>
     <mapping class="spring.mvc.models.HRPersonnal"/>

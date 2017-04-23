@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -119,7 +120,7 @@
             <thead>
                   <tr class="active">
                 <th>#</th>
-                <th>Posting Title</th>
+                <th>Job Title</th>
                 <th>Work Experience</th>
                 <th>Job Description</th>
                 <th>&nbsp</th>
@@ -132,9 +133,9 @@
             <c:forEach var="jobIt" items="${jobs}">
               <tr>
                 <th scope="row"> <%= i++ %></th>
-                <td>${jobIt.jobTitle}</td>
-                <td>${jobIt.jobExperience}</td>
-                <td>${jobIt.jobDescription}</td>
+                <td>${fn:escapeXml(jobIt.jobTitle)}</td>
+                <td>${fn:escapeXml(jobIt.jobExperience)}</td>
+                <td>${fn:escapeXml(jobIt.jobDescription)}</td>
                 <td hidden="true" class="idOf">${jobIt.id}</td>
                 <td><a href="#jobModal" class="btn btn-default applyButton" data-toggle="modal">Apply Now</a></td>
               </tr>

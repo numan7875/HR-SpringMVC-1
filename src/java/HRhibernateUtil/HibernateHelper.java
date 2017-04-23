@@ -7,8 +7,11 @@ package HRhibernateUtil;
 
 import static HRhibernateUtil.HRhibernateUtil.getSessionFactory;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import spring.mvc.models.Applicant;
 import spring.mvc.models.Job;
 import spring.mvc.models.Person;
@@ -108,6 +111,16 @@ public class HibernateHelper {
                 "from Person as P where P.experience is not null");
        
         List<Person> list1 = query.list();
+        List<Applicant> list = query.list();
+        sessionOf.close();
+        return list;
+    }
+    public List<Applicant> search(String name){
+        Session sessionOf = getSessionFactory().openSession();
+        
+       Query query = sessionOf
+               .createQuery("from Person as P");
+       
         List<Applicant> list = query.list();
         sessionOf.close();
         return list;
