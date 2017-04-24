@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
   <head>
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +24,7 @@
   <body>
   <div class="jumbotron" style="height: 100vh;">
    <div class="container" style="align-content: center">
-       <form class="form-signin" action="loginHR" method="post">
+       <form class="form-signin" th:action="@{/loginHR}" method="post">
         <h2 class="form-signin-heading"><img src="<c:url value="/resources/img/numan.png"></c:url>" class="img-responsive" alt="Responsive image"></h2>
         <br>
         <label for="inputEmail" class="sr-only">Email address</label>
