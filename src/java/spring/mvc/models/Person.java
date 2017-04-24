@@ -3,16 +3,20 @@ package spring.mvc.models;
 
 import HRhibernateUtil.HibernateHelper;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.springframework.context.annotation.Scope;
@@ -46,6 +50,28 @@ public class Person implements Serializable {
 
     @Column(name = "mailingAddress",nullable = false,length = 70)
     private String mailingAddress;
+    
+    @Column(name = "enabled",nullable = false)
+    private boolean enabled;
+    
+    private transient Set<PersonRole> personRole = new HashSet<PersonRole>(0);
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<PersonRole> getPersonRole() {
+        return personRole;
+    }
+
+    public void setPersonRole(Set<PersonRole> personRole) {
+        this.personRole = personRole;
+    }
     
     @Transient
     public String getDecriminatorValue() {

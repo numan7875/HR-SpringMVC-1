@@ -19,5 +19,6 @@
     <mapping class="spring.mvc.models.Job"/>
     <mapping class="spring.mvc.models.Person"/>
     <mapping class="spring.mvc.models.SME"/>
+    <mapping class="spring.mvc.models.PersonRole"/>
   </session-factory>
 </hibernate-configuration>

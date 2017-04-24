@@ -76,6 +76,7 @@ public class HibernateHelper {
                 .setParameter("email", person.getEmail())
                 .setParameter("password", person.getPassword());
         
+        
         List<Person> list = query.list();
         
         sessionOf.close();
